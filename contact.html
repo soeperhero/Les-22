@@ -39,15 +39,27 @@ Quisque aliquet metus eget leo sodales, at venenatis ante aliquet. Quisque scele
 <input type="email" name="email" required placeholder="Uw e-mailadres"/>
 <input type="hidden" name="_subject" value="Website contact"/>
 <div class="textarea-wrapper">
-<textarea name="message" placeholder="Uw bericht" maxlength="1000" rows="6" required></textarea>
-<input type="text" name="_gotach" style="display:none"/>
+<textarea id="message" name="message" placeholder="Uw bericht" maxlength="1000" rows="6" required></textarea>
+<input type="text" name="_gotcha" style="display:none"/>
 <input type="submit" value="Verzend">
-<small>1000 tekens over</small>
+<small><span id="charsLeft">1000</span> tekens over</small>
+</div>
 </div>
 </form>
 </div>
 </div>
 </main>
 <footer class="footer"><div class="footer-inner">© 2026 CP - All Rights Reserved</div></footer>
+<script>
+const textarea = document.getElementById('message');
+const counter = document.getElementById('charsLeft');
+const max = textarea.maxLength;
+function updateCount() {
+const used = textarea.value.length;
+counter.textContent = max - used;
+}
+textarea.addEventListener('input', updateCount);
+updateCount(); // set correct value on page load
+</script>
 </body>
 </html>
